@@ -1,0 +1,20 @@
+import pandas as pd
+
+
+titanic = pd.read_csv("data/titanic.csv")
+titanic.head()
+titanic["Age"].mean()
+titanic[["Age", "Fare"]].median()
+titanic[["Age", "Fare"]].describe()
+titanic.agg(
+    {
+        "Age": ["min", "max", "median", "skew"],
+        "Fare": ["min", "max", "median", "mean"],
+    }
+)
+titanic[["Sex", "Age"]].groupby("Sex").mean()
+titanic.groupby("Sex").mean(numeric_only=True)
+titanic.groupby("Sex")["Age"].mean()
+titanic.groupby(["Sex", "Pclass"])["Fare"].mean()
+titanic["Pclass"].value_counts()
+titanic.groupby("Pclass")["Pclass"].count()
